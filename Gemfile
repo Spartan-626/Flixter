@@ -72,7 +72,7 @@ gem 'devise'
 
 gem 'carrierwave'
 gem 'figaro'
-gem 'fog-aws'
+gem 'carrierwave-aws'
 gem 'mini_magick'
 
 source 'https://rails-assets.org' do
