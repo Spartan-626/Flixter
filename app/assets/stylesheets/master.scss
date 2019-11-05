@@ -100,12 +100,20 @@ booyah-box h2,
 
 .lesson {
   background-color: black;
+  margin-top: 10px;
+  height; 130px;
 }
 
 .lesson a {
   color: white;
   font-family: "Helvetica Neue", Helvetica;
   font-weight: 100;
+  font-size: 15px;
+}
+
+.lesson a b {
+  font-weight: 100;
+  font-size: 25px;
 }
 
 .section {
