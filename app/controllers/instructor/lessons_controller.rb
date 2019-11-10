@@ -19,6 +19,14 @@ class Instructor::LessonsController < ApplicationController
     end
   end
 
+  def require_enrollment_for_lesson
+    if current_user && current_user.enrolled_in?(current_lesson.section.course) = false
+      flash[:notice] = "You must be enrolled to view this lesson."
+      redirect_to course_path(current_lesson.section.course)
+
+    end
+  end
+
   helper_method :current_section
   def current_section
     @current_section ||= Section.find(params[:section_id])
