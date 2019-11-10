@@ -10,7 +10,6 @@ class Instructor::CoursesController < ApplicationController
   def create
     @course = current_user.courses.create(course_params)
     if @course.valid?
-      flash[:notice] = Unauthorized User
       redirect_to instructor_course_path(@course)
     else
       render :new, status: :unprocessable_entity
@@ -22,6 +21,14 @@ class Instructor::CoursesController < ApplicationController
 
   private
 
+  def require_enrollment_for_lesson
+    if current_user && current_user.enrolled_in?(current_lesson.section.course) = false
+      flash[:notice] = "You must be enrolled to view this lesson."
+      redirect_to course_path(current_lesson.section.course)
+
+    end
+  end
+
   def require_authorized_for_current_course
     if current_course.user != current_user
       render plain: "Unauthorized", status: :unauthorized
@@ -32,6 +39,8 @@ class Instructor::CoursesController < ApplicationController
   def current_course
     @current_course ||= Course.find(params[:id])
   end
+
+  helper_method :current_user
 
   def course_params
     params.require(:course).permit(:title, :description, :cost, :image)
