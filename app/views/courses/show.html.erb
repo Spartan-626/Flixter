@@ -26,6 +26,7 @@
         <%= form_tag course_enrollments_path(@course) do %>
 
           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  Stripe.setPublishableKey('PUBLISHABLE_KEY');
                   data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                   data-description="A month's subscription"
                   data-amount="500"
@@ -48,16 +49,18 @@
         </h3>
         <div class="row">  
           <% section.lessons.each do |lesson| %>
-            <div class="col-12 col-sm-6">
-              <div class="lesson text-center">
-              <br />
-                <%= link_to lesson_path(lesson) do %>
-                  <b><%= lesson.title %></b>
-                  <br />
-                  <%= lesson.subtitle %>
-                <% end %>
+            <% section.lessons.rank(:row_order).each do |lesson| %>
+              <div class="col-12 col-sm-6">
+                <div class="lesson text-center">
+                <br />
+                  <%= link_to lesson_path(lesson) do %>
+                    <b><%= lesson.title %></b>
+                    <br />
+                    <%= lesson.subtitle %>
+                  <% end %>
+                </div>
               </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
         <br class="clr" />
