@@ -32,12 +32,14 @@
         <%= section.title %>
         <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'float-right btn btn-primary btn-sm' %>
         <ul class="lessons">
-          <% section.lessons.each do |lesson| %>
-            <li data-update-url="<%= instructor_lesson_path(lesson) %>">
-              <b><%= lesson.title %></b>
-              -
-              <%= lesson.subtitle %>
-            </li>
+          <% course.sections.rank(:row_order).each do |section| %>
+            <% section.lessons.rank(:row_order).each do |lesson| %>
+              <li data-update-url="<%= instructor_lesson_path(lesson) %>">
+                <b><%= lesson.title %></b>
+                -
+                <%= lesson.subtitle %>
+              </li>
+            <% end %>
           <% end %>
         </ul>
         <br class="clr" />
