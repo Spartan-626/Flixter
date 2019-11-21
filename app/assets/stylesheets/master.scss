@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 
 body {
   background-image: image_url("bg.png");
@@ -120,4 +121,8 @@ booyah-box h2,
   border: 1px solid;
   border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
   padding: 20px;
+}
+
+ul {
+  list-style-type: none;
 }
